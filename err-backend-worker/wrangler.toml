@@ -1,0 +1,10 @@
+name = "err-backend-worker"
+type = "javascript"
+
+account_id = "7d5cc202eb6a7eaa1554c76c2005a328"
+workers_dev = true
+route = ""
+zone_id = ""
+kv_namespaces = [
+  { binding = "ERR", preview_id = "997ecf4fceea4b928ddc7c070e257c5e", id = "c2f8ece0a4334978b62ba975f9d648d3" }
+]
