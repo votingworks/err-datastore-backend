@@ -1,49 +1,130 @@
+// top-level fields expected
+const CORE_FIELDS = ['PreElectionData', 'CumulativeAbsenteeCentralResults']
+
+// top-level fields that contain arrays of objects and the primary key in those objects
+const ARRAY_FIELDS_AND_KEY = {
+  ElectionNightPrecinctResults: 'PrecinctName',
+}
+
+// schema *un*-aware, just updates an object tree incrementally
+function objectAccumulate(accumulatedField, newField) {
+  if (newField === null) {
+    return accumulatedField || null
+  }
+
+  if (typeof newField === 'object') {
+    return Object.keys(newField).reduce(
+      (result, key) => {
+        result[key] = objectAccumulate(
+          accumulatedField ? accumulatedField[key] : null,
+          newField[key],
+        )
+        return result
+      },
+      { ...accumulatedField },
+    )
+  }
+
+  if (typeof newField === 'array') {
+    // shouldn't happen yet, we don't support it
+    throw 'oy'
+  }
+
+  return newField
+}
+
+// this is aware of the cognito schema
+function accumulate(accumulatedData, newData) {
+  return Object.keys(newData).reduce(
+    (result, key) => {
+      if (CORE_FIELDS.includes(key)) {
+        result[key] = objectAccumulate(accumulatedData[key], newData[key])
+      }
+
+      if (Object.keys(ARRAY_FIELDS_AND_KEY).includes(key)) {
+        const primaryKeyFieldName = ARRAY_FIELDS_AND_KEY[key]
+        if (result[key] === undefined) {
+          result[key] = []
+        }
+        newData[key].forEach(newArrayElement => {
+          const primaryKeyValue = newArrayElement[primaryKeyFieldName]
+          if (primaryKeyValue === null) {
+            return
+          }
+          const existingArrayElement = result[key].find(
+            e => e[primaryKeyFieldName] === primaryKeyValue,
+          )
+          result[key] = [
+            ...result[key].filter(e => e !== existingArrayElement),
+            objectAccumulate(existingArrayElement, newArrayElement),
+          ]
+        })
+      }
+
+      return result
+    },
+    { ...accumulatedData },
+  )
+}
+
 function convert(cognito_input) {
   const registeredVoterCount =
     cognito_input.PreElectionData.TotalVotersRegisteredInCity
+
+  let totalBallotsCast = 0
+
   const precinctResults = {}
 
   // sum up all the results
   const combinedResults = {}
 
-  cognito_input.ElectionNightPrecinctResults.forEach(pr => {
-    const precinctId = pr.PrecinctName.split(':')[1]
-    const onePrecinctResults = (precinctResults[precinctId] = { contests: {} })
-    Object.keys(pr).forEach(k => {
-      if (k === 'Id' || k === 'ItemNumber' || k === 'PrecinctName') {
+  const precinctsAndAbsentee = [
+    ...cognito_input.ElectionNightPrecinctResults,
+    cognito_input.CumulativeAbsenteeCentralResults,
+  ]
+  precinctsAndAbsentee.forEach(oneGroupResult => {
+    totalBallotsCast += oneGroupResult.TotalBallotsCast || 0
+    Object.keys(oneGroupResult).forEach(k => {
+      if (
+        k === 'Id' ||
+        k === 'ItemNumber' ||
+        k === 'PrecinctName' ||
+        k.includes('TotalBallotsCast')
+      ) {
         return
       }
-      onePrecinctResults.contests[k] = { candidates: {} }
 
-      if (combinedResults[k] === undefined) {
-        combinedResults[k] = { candidates: {} }
+      const contestName = k.replace('ContestID', '')
+
+      if (combinedResults[contestName] === undefined) {
+        combinedResults[contestName] = { candidates: {} }
       }
 
-      Object.keys(pr[k]).forEach(prk => {
+      Object.keys(oneGroupResult[k]).forEach(prk => {
         if (prk.includes('_IncrementBy')) {
           return
         }
 
         let new_prk
-        if (prk.includes('WriteIn')) {
+        if (prk.toLowerCase().includes('writein')) {
           new_prk = 'writeIn'
         } else {
           new_prk = prk.replace('ID', '')
         }
 
-        onePrecinctResults.contests[k].candidates[new_prk] = pr[k][prk]
-
-        combinedResults[k].candidates[new_prk] =
-          (combinedResults[k].candidates[new_prk] || 0) + pr[k][prk]
+        // this is where we sum things up
+        combinedResults[contestName].candidates[new_prk] =
+          (combinedResults[contestName].candidates[new_prk] || 0) +
+          oneGroupResult[k][prk]
       })
     })
   })
 
   return {
     registeredVoterCount,
-    precincts: precinctResults,
+    ballotsCounted: totalBallotsCast,
     contests: combinedResults,
   }
 }
 
-module.exports = { convert }
+module.exports = { convert, objectAccumulate, accumulate }
