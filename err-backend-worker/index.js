@@ -13,7 +13,10 @@ async function handleRequest(request) {
 
   if (request.method === "GET" && url.pathname === "/" + publicURLToken) {
     return new Response(await ERR.get("content"), {
-      headers: { 'content-type': 'application/json' },
+	headers: {
+	    'content-type': 'application/json',
+	    'Access-Control-Allow-Origin': '*'
+	},
     })
   }
 
