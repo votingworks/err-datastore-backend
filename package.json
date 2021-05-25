@@ -1,0 +1,19 @@
+{
+  "name": "err-datastore-backend",
+  "private": true,
+  "workspaces": [
+    "err-backend-worker"
+  ],
+  "scripts": {
+    "prepare": "husky install"
+  },
+  "lint-staged": {
+    "**/*.{js,css,json,md}": "prettier --write",
+    "package.json": "sort-package-json"
+  },
+  "devDependencies": {
+    "husky": "^6.0.0",
+    "lint-staged": "^11.0.0",
+    "sort-package-json": "^1.50.0"
+  }
+}
