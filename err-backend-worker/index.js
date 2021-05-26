@@ -1,5 +1,9 @@
 // top-level fields expected
-const CORE_FIELDS = ['PreElectionData', 'CumulativeAbsenteeCentralResults']
+const CORE_FIELDS = [
+  'PreElectionData',
+  'CumulativeAbsenteeCentralResults',
+  'Entry',
+]
 
 // top-level fields that contain arrays of objects and the primary key in those objects
 const ARRAY_FIELDS_AND_KEY = {
@@ -71,6 +75,9 @@ function convert(cognito_input) {
   const registeredVoterCount =
     cognito_input.PreElectionData.TotalVotersRegisteredInCity
 
+  const isOfficial = cognito_input.PreElectionData.ResultsCertified
+  const lastUpdatedDate = cognito_input.Entry.DateUpdated
+
   let totalBallotsCast = 0
 
   const precinctResults = {}
@@ -124,6 +131,8 @@ function convert(cognito_input) {
     registeredVoterCount,
     ballotsCounted: totalBallotsCast,
     contests: combinedResults,
+    isOfficial,
+    lastUpdatedDate,
   }
 }
 
