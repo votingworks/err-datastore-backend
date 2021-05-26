@@ -1,5 +1,5 @@
 name = "err-backend-worker"
-type = "javascript"
+type = "webpack"
 
 account_id = "7d5cc202eb6a7eaa1554c76c2005a328"
 workers_dev = true

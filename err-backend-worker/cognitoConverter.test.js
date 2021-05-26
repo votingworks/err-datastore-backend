@@ -1,4 +1,4 @@
-const { convert, objectAccumulate, accumulate } = require('./index')
+const { convert, objectAccumulate, accumulate } = require('./cognitoConverter')
 
 test('accumulate objects', () => {
   expect(objectAccumulate({}, { foo: 'bar' })).toEqual({ foo: 'bar' })
@@ -295,6 +295,35 @@ test('cognito accumulate', () => {
       },
     ),
   ).toEqual({
+    Entry: {
+      AdminLink: 'https://www.cognitoforms.com/VotingWorks1/4/entries/5',
+      CustomerCard: null,
+      DateCreated: '2021-05-25T21:36:37.404Z',
+      DateSubmitted: '2021-05-25T21:36:37.373Z',
+      DateUpdated: '2021-05-25T21:36:37.404Z',
+      EditLink:
+        'https://www.cognitoforms.com/VotingWorks1/SampleERDataForm#xPA1q0Y_lobKx8OZah3vQFbjCSGEGudUlz7ldwm1fNA$*',
+      IsBeta: false,
+      LastPageViewed: null,
+      Number: 5,
+      Order: null,
+      Origin: {
+        City: null,
+        CountryCode: null,
+        IpAddress: '73.202.37.228',
+        IsImported: false,
+        Region: null,
+        Timezone: null,
+        UserAgent:
+          'Mozilla/5.0 (X11; CrOS x86_64 13816.82.0) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/90.0.4430.218 Safari/537.36',
+      },
+      PaymentToken: null,
+      Status: 'Submitted',
+      Timestamp: '2021-05-25T21:36:37.373Z',
+      Version: 1,
+      ViewLink:
+        'https://www.cognitoforms.com/VotingWorks1/SampleERDataForm#PN4-mU1chguJBItWduHweyMfRakkNH_PpTfjWYT4dEo$*',
+    },
     PreElectionData: {
       TotalVotersRegisteredInCity: 1000,
       CerificationDate: null,
@@ -479,6 +508,35 @@ test('cognito accumulate', () => {
       },
     ),
   ).toEqual({
+    Entry: {
+      AdminLink: 'https://www.cognitoforms.com/VotingWorks1/4/entries/6',
+      CustomerCard: null,
+      DateCreated: '2021-05-25T23:20:19.680Z',
+      DateSubmitted: '2021-05-25T23:20:19.649Z',
+      DateUpdated: '2021-05-25T23:20:19.680Z',
+      EditLink:
+        'https://www.cognitoforms.com/VotingWorks1/SampleERDataForm#TmxwTREcXaSC6whm28y_aPho2QQAAPHQR_Ta72681_Y$*',
+      IsBeta: false,
+      LastPageViewed: null,
+      Number: 6,
+      Order: null,
+      Origin: {
+        City: null,
+        CountryCode: null,
+        IpAddress: '73.202.37.228',
+        IsImported: false,
+        Region: null,
+        Timezone: null,
+        UserAgent:
+          'Mozilla/5.0 (X11; CrOS x86_64 13816.82.0) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/90.0.4430.218 Safari/537.36',
+      },
+      PaymentToken: null,
+      Status: 'Submitted',
+      Timestamp: '2021-05-25T23:20:19.649Z',
+      Version: 1,
+      ViewLink:
+        'https://www.cognitoforms.com/VotingWorks1/SampleERDataForm#SES-_0vp-YlrnWXD6GE7x5sMWdIPyPFXGjUz_wAaVw0$*',
+    },
     PreElectionData: {
       TotalVotersRegisteredInCity: 1000,
       CerificationDate: '2021-05-27',
@@ -727,6 +785,35 @@ test('cognito accumulate', () => {
       },
     ),
   ).toEqual({
+    Entry: {
+      AdminLink: 'https://www.cognitoforms.com/VotingWorks1/4/entries/7',
+      CustomerCard: null,
+      DateCreated: '2021-05-25T23:25:47.134Z',
+      DateSubmitted: '2021-05-25T23:25:47.102Z',
+      DateUpdated: '2021-05-25T23:25:47.134Z',
+      EditLink:
+        'https://www.cognitoforms.com/VotingWorks1/SampleERDataForm#3CbyHWbId-88xPfE7habBDNDZVh-ZE4cxEGpmZAVfpY$*',
+      IsBeta: false,
+      LastPageViewed: null,
+      Number: 7,
+      Order: null,
+      Origin: {
+        City: null,
+        CountryCode: null,
+        IpAddress: '73.202.37.228',
+        IsImported: false,
+        Region: null,
+        Timezone: null,
+        UserAgent:
+          'Mozilla/5.0 (X11; CrOS x86_64 13816.82.0) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/90.0.4430.218 Safari/537.36',
+      },
+      PaymentToken: null,
+      Status: 'Submitted',
+      Timestamp: '2021-05-25T23:25:47.102Z',
+      Version: 1,
+      ViewLink:
+        'https://www.cognitoforms.com/VotingWorks1/SampleERDataForm#IKFluHtDph30CH1dWExqBdkUWD_tBipILS7g6_92ZG8$*',
+    },
     PreElectionData: {
       TotalVotersRegisteredInCity: 1000,
       CerificationDate: '2021-05-27',
@@ -824,6 +911,8 @@ test('basic Cognito transform', () => {
         },
       },
     },
+    isOfficial: false,
+    lastUpdatedDate: null,
   }
 
   const input = {
