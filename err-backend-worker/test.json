@@ -1,0 +1,103 @@
+{
+  "Form": {
+    "Id": "4",
+    "InternalName": "SampleERDataForm",
+    "Name": "Sample ER Data Form"
+  },
+  "$version": 7,
+  "$etag": "W/\"datetime'2021-05-25T23%3A25%3A47.2228084Z'\"",
+  "Entry": {
+    "AdminLink": "https://www.cognitoforms.com/VotingWorks1/4/entries/7",
+    "CustomerCard": null,
+    "DateCreated": "2021-05-25T23:25:47.134Z",
+    "DateSubmitted": "2021-05-25T23:25:47.102Z",
+    "DateUpdated": "2021-05-25T23:25:47.134Z",
+    "EditLink": "https://www.cognitoforms.com/VotingWorks1/SampleERDataForm#3CbyHWbId-88xPfE7habBDNDZVh-ZE4cxEGpmZAVfpY$*",
+    "IsBeta": false,
+    "LastPageViewed": null,
+    "Number": 7,
+    "Order": null,
+    "Origin": {
+      "City": null,
+      "CountryCode": null,
+      "IpAddress": "73.202.37.228",
+      "IsImported": false,
+      "Region": null,
+      "Timezone": null,
+      "UserAgent": "Mozilla/5.0 (X11; CrOS x86_64 13816.82.0) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/90.0.4430.218 Safari/537.36"
+    },
+    "PaymentToken": null,
+    "Status": "Submitted",
+    "Timestamp": "2021-05-25T23:25:47.102Z",
+    "Version": 1,
+    "ViewLink": "https://www.cognitoforms.com/VotingWorks1/SampleERDataForm#IKFluHtDph30CH1dWExqBdkUWD_tBipILS7g6_92ZG8$*"
+  },
+  "PreElectionData": {
+    "TotalVotersRegisteredInCity": null,
+    "CerificationDate": null,
+    "ResultsCertified": false,
+    "TotalVotersRegisteredInCity_IncrementBy": 1
+  },
+  "ElectionNightPrecinctResults": [
+    {
+      "Id": "31Op68",
+      "PrecinctName": null,
+      "ContestID775023387": {
+        "ID775033907": null,
+        "ID775036124": null,
+        "ID775036125": null,
+        "MayorWriteIn": null,
+        "ID775033907_IncrementBy": 1,
+        "ID775036124_IncrementBy": 1,
+        "ID775036125_IncrementBy": 1,
+        "MayorWriteIn_IncrementBy": 1
+      },
+      "ContestID775023386": {
+        "ID775033204": null,
+        "ID775036126": null,
+        "SouthWardAldermanWritein": null,
+        "ID775033204_IncrementBy": 1,
+        "ID775036126_IncrementBy": 1,
+        "SouthWardAldermanWritein_IncrementBy": 1
+      },
+      "ContestID775023385": {
+        "ID775033203": null,
+        "NorthWardAldermanWritein": null,
+        "ID775033203_IncrementBy": 1,
+        "NorthWardAldermanWritein_IncrementBy": 1
+      },
+      "TotalBallotsCast": null,
+      "ItemNumber": 1,
+      "TotalBallotsCast_IncrementBy": 1
+    }
+  ],
+  "CumulativeAbsenteeCentralResults": {
+    "ContestID775023385": {
+      "ID775033203": 200,
+      "NorthWardAldermanWritein": 10,
+      "ID775033203_IncrementBy": 1,
+      "NorthWardAldermanWritein_IncrementBy": 1
+    },
+    "ContestID775023386": {
+      "ID775033204": 50,
+      "ID775036126": null,
+      "SouthWardAldermanWritein": null,
+      "ID775033204_IncrementBy": 1,
+      "ID775036126_IncrementBy": 1,
+      "SouthWardAldermanWritein_IncrementBy": 1
+    },
+    "TotalBallotsCast": null,
+    "ContestID775023387": {
+      "ID775033907": null,
+      "ID775036124": null,
+      "ID775036125": null,
+      "MayorWriteIn": null,
+      "ID775033907_IncrementBy": 1,
+      "ID775036124_IncrementBy": 1,
+      "ID775036125_IncrementBy": 1,
+      "MayorWriteIn_IncrementBy": 1
+    },
+    "TotalBallotsCast_IncrementBy": 1
+  },
+  "Id": "4-7"
+}

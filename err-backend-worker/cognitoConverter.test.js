@@ -1,4 +1,4 @@
-const { convert, objectAccumulate, accumulate } = require('./cognitoConverter')
+const { convert, objectAccumulate, accumulate } = require('./index')
 
 test('accumulate objects', () => {
   expect(objectAccumulate({}, { foo: 'bar' })).toEqual({ foo: 'bar' })
