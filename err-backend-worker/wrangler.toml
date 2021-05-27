@@ -8,3 +8,10 @@ zone_id = ""
 kv_namespaces = [
   { binding = "ERR", preview_id = "997ecf4fceea4b928ddc7c070e257c5e", id = "c2f8ece0a4334978b62ba975f9d648d3" }
 ]
+
+[env.production]
+name = "err-backend-worker-production"
+vars = { ENVIRONMENT = "production" }
+kv_namespaces = [
+  { binding = "ERR", id = "14448032a4644e9381c0f321144427c9", preview_id = "997ecf4fceea4b928ddc7c070e257c5e" }
+]
