@@ -80,6 +80,8 @@ function convert(cognito_input) {
     ? cognito_input.Entry.DateUpdated
     : null
 
+  const certificationDate = cognito_input.PreElectionData.CertificationDate
+
   let totalBallotsCast = 0
 
   const precinctResults = {}
@@ -135,6 +137,7 @@ function convert(cognito_input) {
     contests: combinedResults,
     isOfficial,
     lastUpdatedDate,
+    certificationDate,
   }
 }
 

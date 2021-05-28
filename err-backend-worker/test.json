@@ -34,7 +34,7 @@
   },
   "PreElectionData": {
     "TotalVotersRegisteredInCity": null,
-    "CerificationDate": null,
+    "CertificationDate": null,
     "ResultsCertified": false,
     "TotalVotersRegisteredInCity_IncrementBy": 1
   },

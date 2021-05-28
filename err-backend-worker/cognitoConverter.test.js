@@ -913,12 +913,13 @@ test('basic Cognito transform', () => {
     },
     isOfficial: false,
     lastUpdatedDate: null,
+    certificationDate: '2021-05-27',
   }
 
   const input = {
     PreElectionData: {
       TotalVotersRegisteredInCity: 1000,
-      CerificationDate: '2021-05-27',
+      CertificationDate: '2021-05-27',
       ResultsCertified: false,
       TotalVotersRegisteredInCity_IncrementBy: 1,
     },
